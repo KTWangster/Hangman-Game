@@ -27,13 +27,16 @@
 
 <body background="assets/images/grid.png">
     <!-- Header -->
-    <div class="row" id="titlerow">
+    <div class="row">
         <div class="col-md-12">
 
             <header>
-                <h1 id="title">
+                <div id="logo">
+                    <img class="logoImage" src="assets/images/logo.jpg" alt="Logo">
+                </div>
+                <div id="title">
                     <img class="titleImage" src="assets/images/title.png" alt="Title">
-                </h1>
+                </div>
             </header>
 
         </div>
@@ -51,7 +54,7 @@
 
         <!-- Game Div -->
         <div class="row">
-            <div class="col-md-12" id="words">
+            <div class="col-md-12">
                 <ul id="word">
                     <li id="guess"> </li>
                 </ul>
@@ -61,29 +64,29 @@
 
         <!-- Guesses Made -->
         <div class="row">
-            <div class="col-md-4" id=guessesMade>
-
-                <p> Guesses Made: </p>
-                <ul id="listedLetters">
-                    <li id="guessedLetter"> </li>
-                </ul>
-            </div>
-
             <div class="col-md-4" id="winsAndLosses">
                 <p>Wins: 0</p>
                 <p>Losses: 0</p>
                 <p> Guesses Remaining: 10</p>
 
             </div>
+            <div class="col-md-4" id=guessesMade>
+                <p> Guesses Made: </p>
+                <ul id="listedLetters">
+                    <li id="guessedLetter"> </li>
+                </ul>
+            </div>
         </div>
         <!-- End Guesses Made -->
 
 
 
-        <audio id="audiotag1" src="assets/audio/song.wav" preload="auto"></audio>
-        <a href="javascript:play_single_sound();">Play 5-sec sound on single channel</a>
 
 
+        <audio autoplay loop>
+            <source src="assets/audio/song.wav" type="audio/ogg">
+
+        </audio>
 
 
 

@@ -6,7 +6,7 @@ var losses = 0;
 // Varibale holding number of guesses remaining.
 var guessesRemaining = 10;
 // Variable holding guessed letters.
-var alreadyGuessed = [];
+var guessesMade = [];
 //Choose random word for player to guess from array!
 var randomWord = words[Math.floor(Math.random() * words.length)];
 
@@ -29,8 +29,6 @@ function displayWord() {
     }
 }
 
-//END DISPLAY WORD FUNCTION
-
 // Displays new word
 function newWord() {
     document.getElementById("word").innerHTML = "";
@@ -48,7 +46,7 @@ function startGame() {
         // Determines which key was pressed.
         var userGuess = event.key;
 
-        // ADDS KEY PRESSED TO LIST AND DISPLAYS TO GUESSED LETTERS 
+        // Displays keys already pressed. 
         function typedLetters() {
             var liList = document.getElementById("listedLetters").getElementsByTagName("li");
 
@@ -73,7 +71,6 @@ function startGame() {
                 }
             }
         }
-        //************* END FOR LOOP **************************REGEX ABOVE
 
         //USING REGEX TO MAKE SURE THAT typedLetters() DOESN'T LOG NON REGULAR AND LOWERCASE LETTERS
         var pat = /^[a-z]+$/;
@@ -81,11 +78,11 @@ function startGame() {
             typedLetters();
         }
 
-        //Function that takes a string parameter and sees if userGuess is in that string
+        // Function that takes a string parameter and sees if userGuess is in that string
         function checkList(word) {
 
             var wrongCounter = 0;
-            //FOR LOOP TO ITERATE THROUGH WORD AND CHECK IF LETTER IS THE LETTER THAT THE USER TYPED ----------------------
+            // For Loop iterates through word and checks if letter matches user guess.
             for (i = 0; i < word.length; i++) {
 
                 if (word[i] === userGuess) {
@@ -95,7 +92,6 @@ function startGame() {
                         if (word[i] === userGuess) {
                             var li = document.getElementById(("letter" + i)).innerHTML = word[i];
                         }
-
                     }
 
                     //CHECK IF PLAYER WON STARTS HERE
@@ -107,34 +103,33 @@ function startGame() {
                         var saveWord = saveWord.concat(letter);
                     }
 
-                    //checks if player already won
+                    // Checks if player already won
                     if (saveWord === word) {
-                        var youWin = "YOU WON THIS GAME! Press Enter to play again!"
+                        var youWin = "You won the game! Press the enter key to play again!"
                         document.querySelector("#game").innerHTML = youWin;
                         wins++;
 
-                        //UPDATES WIN AND LOSS COUNTER
+                        // Update wins and losses counters.
                         guessesRemaining = 10;
                         var winCounter = "Wins: " + wins + "<br />" +
                             "Losses: " + losses + "<br />" +
                             "Guesses Remaining: " + guessesRemaining;
                         document.querySelector("#winsAndLosses").innerHTML = winCounter;
-                        //****** 
-                        var gameover = "YOU WON THE GAME! PRESS ENTER TO PLAY AGAIN!";
-                        document.querySelector("#game").innerHTML = gameover;
-                        eval(randomWord).getImage();
+                         
+                        var gameOver = "You won the game! Press the enter key to play again!";
+                        document.querySelector("#game").innerHTML = gameOver;
+                        eval(randomWord);
 
-                        alreadyGuessed = [];
+                        guessesMade = [];
 
-                        //IF USER PRESS ENTER AFTER WINNING
-                        document.onkeyup = function (event) {
+                        // Pressing the enter key after winninng resets game.
+                        document.onkeyup = function(event) {
                             if (event.which == 13 || event.keyCode == 13) {
                                 restartGame();
                                 startGame();
                             }
                         }
                     }
-                    //CHECK IF PLAYER WON ENDS HERE
 
                 }
                 else {
@@ -149,9 +144,9 @@ function startGame() {
                     var pat = /^[a-z]+$/;
                     if (pat.test(userGuess)) {
 
-                        if (alreadyGuessed.indexOf(userGuess) === -1) {
-                            guessesRemaining--;
-                            alreadyGuessed.push(userGuess);
+                        if (guessesMade.indexOf(userGuess) === -1) {
+                            guessesRemaining --;
+                            guessesMade.push(userGuess);
                         }
                     }
 
@@ -160,23 +155,23 @@ function startGame() {
                         "Losses: " + losses + "<br />" +
                         "Guesses Remaining: " + guessesRemaining;
                     document.querySelector("#winsAndLosses").innerHTML = guessCounter;
-                    //**** 
+
                     var gameWrong = "Your guess is incorrect. You have " + guessesRemaining + " guesses remaing!";
                     document.querySelector("#game").innerHTML = gameWrong;
                     if (guessesRemaining === 0) {
-                        var gameover = "Game Over! Try Again. Press Enter to play again!";
-                        document.querySelector("#game").innerHTML = gameover;
+                        var gameOver = "Game Over! Press the enter key to try again!";
+                        document.querySelector("#game").innerHTML = gameOver;
                         losses++;
-                        //UPDATES WIN AND LOSS COUNTER
+                        // Updates wins and losses counter.
                         guessesRemaining = 10;
                         var lossCounter = "Wins: " + wins + "<br />" +
                             "Losses: " + losses + "<br />" +
                             "Guesses Remaining: " + guessesRemaining;
                         document.querySelector("#winsAndLosses").innerHTML = lossCounter;
 
-                        //PLAYER CAN PRESS ENTER TO PLAY AGAIN!
-                        alreadyGuessed = [];
-                        document.onkeyup = function (event) {
+                        // Enter key resets game
+                        guessesMade = [];
+                        document.onkeyup = function(event) {
                             if (event.which == 13 || event.keyCode == 13) {
                                 restartGame();
                                 startGame();
@@ -195,7 +190,7 @@ function startGame() {
         //Function to restart the game! 
         function restartGame() {
             randomWord = words[Math.floor(Math.random() * words.length)];
-            eval(randomWord).getMusic();
+            eval(randomWord);
             guessesRemaining = 10;
             newWord();
             document.getElementById("listedLetters").innerHTML = "<li id='guess'> </li>";
