@@ -120,7 +120,7 @@ li {
    overflow: wrap;
 }
 
-#winsAndLosses {
+#scoreCounter {
     font-size: 20px;
     letter-spacing: 10px;
     text-align: left;

@@ -114,7 +114,7 @@ function startGame() {
                         var winCounter = "Wins: " + wins + "<br />" +
                             "Losses: " + losses + "<br />" +
                             "Guesses Remaining: " + guessesRemaining;
-                        document.querySelector("#winsAndLosses").innerHTML = winCounter;
+                        document.querySelector("#scoreCounter").innerHTML = winCounter;
                          
                         var gameOver = "You won the game! Press the enter key to play again!";
                         document.querySelector("#game").innerHTML = gameOver;
@@ -130,7 +130,6 @@ function startGame() {
                             }
                         }
                     }
-
                 }
                 else {
                     wrongCounter++;
@@ -154,7 +153,7 @@ function startGame() {
                     var guessCounter = "Wins: " + wins + "<br />" +
                         "Losses: " + losses + "<br />" +
                         "Guesses Remaining: " + guessesRemaining;
-                    document.querySelector("#winsAndLosses").innerHTML = guessCounter;
+                    document.querySelector("#scoreCounnter").innerHTML = guessCounter;
 
                     var gameWrong = "Your guess is incorrect. You have " + guessesRemaining + " guesses remaing!";
                     document.querySelector("#game").innerHTML = gameWrong;
@@ -167,7 +166,7 @@ function startGame() {
                         var lossCounter = "Wins: " + wins + "<br />" +
                             "Losses: " + losses + "<br />" +
                             "Guesses Remaining: " + guessesRemaining;
-                        document.querySelector("#winsAndLosses").innerHTML = lossCounter;
+                        document.querySelector("#scoreCounter").innerHTML = lossCounter;
 
                         // Enter key resets game
                         guessesMade = [];
